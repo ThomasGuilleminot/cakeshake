@@ -4,9 +4,7 @@
 		<legend><?php echo __('Add Chat'); ?></legend>
 	<?php
 		echo $this->Form->input('user_from');
-		echo $this->Form->input('user_to');
 		echo $this->Form->input('message');
-		echo $this->Form->input('sent');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>

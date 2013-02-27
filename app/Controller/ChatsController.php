@@ -38,15 +38,23 @@ class ChatsController extends AppController {
  * @return void
  */
 	public function add() {
-		if ($this->request->is('post')) {
+		if ($this->request->is('post') || $this->request->is('put')) {
+			$this->request->data['Chat']['user_id'] = $this->Auth->user('id');
 			$this->Chat->create();
 			if ($this->Chat->save($this->request->data)) {
-				$this->Session->setFlash(__('The chat has been saved'));
-				$this->redirect(array('action' => 'index'));
+				//$this->Session->setFlash(__('The chat has been saved'));
+				$this->redirect(array('action' => '/'));
 			} else {
 				$this->Session->setFlash(__('The chat could not be saved. Please, try again.'));
+				$this->redirect(array('action' => '/'));
 			}
 		}
+	}
+
+	public function beforeFilter()
+	{
+		parent::beforeFilter();
+		$this->Auth->allow('add');
 	}
 
 /**
