@@ -26,6 +26,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		<?php echo $cakeDescription ?>:
 		<?php echo $title_for_layout; ?>
 	</title>
+
 	<?php
 		echo $this->Html->meta('icon');
 
@@ -37,27 +38,30 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 	?>
 	</head>
 		<body>
-			<?php debug($me); ?>
+			
+			
 			<div id="container">
 				<div id="header">
 					<h1 style="float:left;"><?php echo $this->Html->link('Users', '/users'); ?></h1>
 					<h1 style="float:left;"><?php echo $this->Html->link('Pictures', '/pictures'); ?></h1>
 					<h1 style="float:left;"><?php echo $this->Html->link('Quizz', '/quizzes'); ?></h1>
 					<h1 style="float:left;"><?php echo $this->Html->link('Chat', '/chats'); ?></h1>
-					<h1><?php echo $this->Html->link('cakeshake', '/'); ?></h1>
-					<h2><?php echo $me['username']; ?></h2>
+					<!-- <h1><?php echo $this->Html->link('cakeshake', '/'); ?></h1>
+					<h2><?php echo $me['username']; ?></h2> -->
 				</div>
 			 		<?php 
 
   					if ($me['id'] != 0) {
 
+  						echo '<br />';
 						echo '<div id="connection">';
-        				echo $this->Html->link('Se Déconnecter', '/users/logout', array('class'=>'bouton'));
+        				echo $this->Html->link('Se déconnecter', '/users/logout');
 						echo '</div>';
 
 					}
 
 					else{
+						echo '<br />';
 						echo '<div id="connection">';
 
 						echo $this->Html->link('Inscription', '/users/add');
@@ -66,9 +70,9 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 						echo $this->Html->link('Se connecter', '/users/login'); 
 
 						echo '</div>';
+						
 					}
 			
-
 
 	       				?>
 			
@@ -79,13 +83,8 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 
 			<?php echo $this->fetch('content'); ?>
 		</div>
-		<div id="footer">
-			<?php echo $this->Html->link(
-					$this->Html->image('cake.power.gif', array('alt' => $cakeDescription, 'border' => '0')),
-					'http://www.cakephp.org/',
-					array('target' => '_blank', 'escape' => false)
-				);
-			?>
+		<div id="footer" style="background-color:black;">
+			
 		</div>
 	</div>
 	
