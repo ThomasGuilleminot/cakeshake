@@ -51,7 +51,7 @@ h1 {
 	font-size: 100%;
 }
 h2 {
-	background:#fff;
+	background:none;
 	color: #e32;
 	font-family:'Gill Sans','lucida grande', helvetica, arial, sans-serif;
 	font-size: 190%;
@@ -79,6 +79,7 @@ p {
 
 #header{
 	padding: 10px 20px;
+	height: 50px;
 }
 #header h1 {
 	line-height:20px;
@@ -752,7 +753,56 @@ pre {
 }
 
 #connection a{
+	color:pink;
+	margin-left: 10px; 
+	margin-right: 20px;
+	background: none;
+	text-decoration: none;
+}
+
+#connection a{
 	color:#3DD8EF;
 	margin-left: 10px; 
 	margin-right: 20px;
+}
+
+#profile_container{
+	width: 200px;
+	height: 800px;
+	background: #dfd;
+	float: left;
+}
+
+
+#img_legend_box{
+	height: 300px;
+	width: 200px;
+	border-bottom: solid thin #000;
+}
+
+#img_profile {
+	height: 200px;
+	width: 200px;
+	background: #fff;
+}
+
+#img_legend{
+	height: 50px;
+	width: 200px;
+	background: #fdf;
+	padding:5px;
+	border-radius: 10px;
+	border: solid thin #000;
+}
+
+#header h2{
+	background: none;
+	float: left;
+}
+
+#profil_champs{
+	float: left;
+	width: 400px;
+	height: auto;
+	margin-left: 20px;
 }

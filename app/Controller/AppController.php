@@ -32,63 +32,63 @@ App::uses('Controller', 'Controller');
 * @link http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
 */
 	class AppController extends Controller {
-		
+
 		public $components = array(
 			'Session',
 			'Auth' => array(
 				'loginRedirect' => array('controller' => 'users', 'action' => 'index'),
 				'logoutRedirect' => array('controller' => 'users', 'action' => 'login'),
 				'authorize' => array('Controller')
-					)
-				);
+			)
+		);
 
-				function beforeFilter() {
-					if (isset($this->params['prefix']) && $this->params['prefix'] == 'admin') {
-						$this->layout = 'admin';
-					}
-					$this ->Auth->allow('index', 'view');
+		public function beforeFilter() {
+			if (isset($this->params['prefix']) && $this->params['prefix'] == 'admin') {
+				$this->layout = 'admin';
+			}
+			$this ->Auth->allow('index', 'view');
 
-					if($this->Auth->loggedIn())
-					{
-						$this->set('me', $this->Auth->user());
-					}
+			if($this->Auth->loggedIn())
+			{
+				$this->set('me', $this->Auth->user());
+			}
 
-					else
-					{
-						$this->set('me', array('username'=>'non connecté','id'=>0));
-					}
+			else
+			{
+				$this->set('me', array('username'=>'non connecté','id'=>0));
+			}
+		}
+
+		public function isAuthorized($user){
+
+
+			if($this->action == 'add'){
+
+				if(isset($user['username']) && $user['username'] > 0){
+					return true;
+				}
+				else {
+					return false;
+				}
+			}
+
+			// if($this->action == 'edit' || $this->action == 'delete'){
+			if(in_array($this->action, array('edit','delete'))){
+
+
+				// ok pour les moderateurs
+				if(isset($user['username']) && $user['username'] == 2){
+					return true;
+				}
+				else {
+					//quotes/edit/6, quote_id is 6
+					$quote_id = $this->request->params['pass'][0];
+					$user_id = $user['id'];
 				}
 
-				public function isAuthorized($user){
+		}
 
-
-					if($this->action == 'add'){
-
-						if(isset($user['username']) && $user['username'] > 0){
-							return true;
-						}
-						else {
-							return false;
-						}
-					}
-
-					// if($this->action == 'edit' || $this->action == 'delete'){
-					if(in_array($this->action, array('edit','delete'))){
-
-
-						// ok pour les moderateurs
-						if(isset($user['username']) && $user['username'] == 2){
-							return true;
-						}
-						else {
-							//quotes/edit/6, quote_id is 6
-							$quote_id = $this->request->params['pass'][0];
-							$user_id = $user['id'];
-						}
-
-				}
-
-					//return parent::isAuthorized($user);
-				}
+			//return parent::isAuthorized($user);
+		}
 
 }

@@ -8,6 +8,16 @@ App::uses('AppController', 'Controller');
 class UsersController extends AppController {
 
 
+	// PROFILE
+
+	public function profile() {
+		$userid = 2;
+        $user = $this->User->findById($userid);
+        $this->set('user',$user); // créé une variable user et stock les données de $user dedans
+
+    }
+
+
 	public function login() {
 		if ($this->request->is('post')) {
 			if ($this->Auth->login()) {
@@ -30,8 +40,10 @@ class UsersController extends AppController {
 		$this->Auth->allow('index');
 		$this->Auth->allow('view');
 		$this->Auth->allow('logout');
-	}
+		$this->Auth->allow('profile');
 	
+	}
+
 	public function isAuthorized($user){
 
 		if($this->action == 'delete'  && $user['id'] ==1) {
@@ -56,7 +68,6 @@ class UsersController extends AppController {
 
 		return parent::isAuthorized($user);
 	}
-	
 
 
 /**
