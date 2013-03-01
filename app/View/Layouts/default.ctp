@@ -23,26 +23,59 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 <head>
 	<?php echo $this->Html->charset(); ?>
 	<title>
-		<?php echo $cakeDescription ?>:
-		<?php echo $title_for_layout; ?>
+	<?php echo $cakeDescription ?>:
+	<?php echo $title_for_layout; ?>
 	</title>
 	<?php
-		echo $this->Html->meta('icon');
+	echo $this->Html->meta('icon');
 
-		echo $this->Html->css('cake.generic');
+	echo $this->Html->css('cake.generic');
 
-		echo $this->fetch('meta');
-		echo $this->fetch('css');
-		echo $this->fetch('script');
+	echo $this->fetch('meta');
+	echo $this->fetch('css');
+	echo $this->fetch('script');
 	?>
-</head>
-<body>
+	</head>
+	<body>
+	<!--<?php debug($me); ?>-->
 	<div id="container">
 		<div id="header">
+			<h2><?php echo $me['username']; ?></h2>
+			
+			<?php 
+
+				if ($me['id'] != 0) {
+
+				echo '<div id="connection">';
+				echo $this->Html->link('Se Déconnecter', '/users/logout', array('class'=>'bouton'));
+				echo '</div>';
+
+			}
+
+			else{
+				echo '<div id="connection">';
+
+				echo $this->Html->link('Inscription', '/users/add');
+					echo'  ';
+
+				echo $this->Html->link('Se connecter', '/users/login'); 
+
+				echo '</div>';
+			}
+
+
+
+					?>
+
 			<h1 style="float:left;"><?php echo $this->Html->link('Users', '/users'); ?></h1>
 			<h1 style="float:left;"><?php echo $this->Html->link('Pictures', '/pictures'); ?></h1>
 			<h1 style="float:left;"><?php echo $this->Html->link('Quizz', '/quizzes'); ?></h1>
 			<h1 style="float:left;"><?php echo $this->Html->link('Chat', '/chats'); ?></h1>
+			<h1 style="float:left;"><?php echo $this->Html->link('cakeshake', '/'); ?></h1>
+			<h1 style="float:left;"><?php echo $this->Html->link('Profil', '/users/profile'); ?></h1>		
+		</div>
+			 		
+			
 		</div>
 		<div id="content">
 
